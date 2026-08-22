@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ドコモ光シミュレーター</title>
+</head>
+<body>
+<h2>ドコモ光料金シミュレーター</h2>
+
+<label>
+住居タイプ:
+<select id="type">
+  <option value="5720">戸建て</option>
+  <option value="4400">マンション</option>
+</select>
+</label>
+
+<br><br>
+
+<label>
+ドコモ回線数:
+<input type="number" id="lines" value="1" min="0">
+</label>
+
+<br><br>
+
+<button onclick="calc()">計算</button>
+
+<h3 id="result"></h3>
+
+<script>
+function calc() {
+  const fee = Number(document.getElementById("type").value);
+  const lines = Number(document.getElementById("lines").value);
+
+  const discount = lines * 1100;
+  const total = Math.max(0, fee - discount);
+
+  document.getElementById("result").innerText =
+    `月額料金目安: ${total.toLocaleString()}円`;
+}
+</script>
+</body>
+</html>
